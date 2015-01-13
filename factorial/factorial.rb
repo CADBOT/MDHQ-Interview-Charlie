@@ -1,8 +1,10 @@
+# standard version
 def factorial(x)
   return 1 if x == 1
   x * factorial(x-1)
 end
 
+# Memoized version
 class Factorial
   @@memo = {}
   def self.compute(x)
@@ -13,8 +15,3 @@ class Factorial
    @@memo[x]
   end
 end
-
-puts Factorial.compute(4)
-puts Factorial.compute(5)
-puts factorial(4)
-puts factorial(5)
