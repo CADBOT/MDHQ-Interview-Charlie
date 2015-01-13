@@ -1,0 +1,14 @@
+1. O(n) means that in the worst cast scenario, there will be approximately one operation for each of the n inputs.
+O(n^2) means for each fo the n inputs, there will be approximately n operations. By approximently, I mean within
+an order of magnitude. (For the mathematically inclined, that means we consider only the leading term and drop its
+coefficient :) )
+2. Pick an arbitary element in the array. This point will be called the pivot. Reorder the array so all values
+less than the pivot come before it, and all values greater than it come after it. Recursively quicksort to
+each of the new sub arrays.
+3. A C Pointer holds the address of a place in memory.
+4. Stack memory only exsists in the block it's declared. The data for the stack is reserved when a function
+is called, and the stack is popped in a LIFO matter. Heap memory is dynamically allocated and deallocated.
+Because of this heap memory can live beyond the block it's declared, as it isn't automatically popped off
+at the end of the block
+5. Garbage collectors are used to free the programmer from having to manually allocate and deallocate memory.
+Garbage collectors tend to increase programmer productivity, at the expense of the programmer having less control.
