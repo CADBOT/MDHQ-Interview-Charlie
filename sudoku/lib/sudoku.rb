@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'set'
 
-class Soduku
+class Sudoku
   attr_accessor :board
 
   def initialize(board)
@@ -79,7 +79,7 @@ end
 def main
   raw_board = parse_board(ARGF.readlines)
   puts raw_board.inspect
-  game = Soduku.new(raw_board)
+  game = Sudoku.new(raw_board)
   game.solve
   game.board.each { |row| puts row.inspect }
 end

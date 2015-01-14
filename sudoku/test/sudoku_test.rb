@@ -4,9 +4,9 @@ require 'minitest/autorun'
 
 require 'sudoku'
 
-describe Soduku do
+describe Sudoku do
   before do
-    @sudoku = Soduku.new(
+    @sudoku = Sudoku.new(
       [
         [0, 3, 5, 2, 9, 0, 8, 6, 4], 
         [0, 8, 2, 4, 1, 0, 7, 0, 3], 
@@ -50,25 +50,76 @@ describe Soduku do
     end
   end
 
+  # TODO: Would like to include tests for all possible 3x3 squares
   describe '#square_valid?' do
-    it 'returns true when the upperleft square contains all digits 1-9 with no repeats' do 
-
+    it 'returns true when the upper-left square contains all digits 1-9 with no repeats' do 
+      input = [
+        [1, 2, 3, 0, 0, 0, 0, 0, 0],
+        [4, 5, 6, 0, 0, 0, 0, 0, 0],
+        [7, 8, 9, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ]
+      @sudoku = Sudoku.new(input)
+      @sudoku.square_valid?(0,0).must_equal true
     end
 
-    it 'returns true when the upperright square contains all digits 1-9 with no repeats' do 
-
+    it 'returns false for parameters 0,0 when the upper-left square contains duplicates' do
+      input = [
+        [1, 2, 3, 0, 0, 0, 0, 0, 0],
+        [4, 1, 6, 0, 0, 0, 0, 0, 0],
+        [7, 8, 1, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ]
+      @sudoku = Sudoku.new(input)
+      @sudoku.square_valid?(0,0).must_equal false
     end
     
-    it 'returns true when the lowerleft square contains all digits 1-9 with no repeats' do 
-
+    it 'returns true when the lower-middle square contains all digits 1-9 with no repeats' do 
+      input = [
+        [1, 2, 3, 0, 0, 0, 0, 0, 0],
+        [4, 5, 6, 0, 0, 0, 0, 0, 0],
+        [7, 8, 9, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 2, 3, 0, 0, 0],
+        [0, 0, 0, 4, 5, 6, 0, 0, 0],
+        [0, 0, 0, 7, 8, 9, 0, 0, 0],
+      ]
+      @sudoku = Sudoku.new(input)
+      @sudoku.square_valid?(0,0).must_equal true
     end
 
-    it 'returns true when the lowerright square contains all digits 1-9 with no repeats' do 
-
+    it 'returns false when the lower-middle square contains duplicates' do
+      input = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 2, 3, 0, 0, 0],
+        [0, 0, 0, 4, 1, 6, 0, 0, 0],
+        [0, 0, 0, 7, 8, 1, 0, 0, 0],
+      ]
+      @sudoku = Sudoku.new(input)
+      @sudoku.square_valid?(0,0).must_equal true
+      @sudoku.square_valid?(8,4).must_equal false
     end
 
   end
 
+  #TODO: add tests here
   describe '#valid?' do
     it 'returns true when row_valid? col_valid? and square_valid are true' do
 
@@ -88,6 +139,7 @@ describe Soduku do
 
   end
 
+  #TODO: add more cases if time permits
   describe '#solve' do
     it 'should return a solved board for the configuration described above' do
       solved = [
